@@ -14,7 +14,9 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="sidebar-wrapper">
-                <img className="sidebar-img" src={this.props.me.images[0].url} />
+                <img className="sidebar-img" src={
+                    this.props.me.images[0] ? this.props.me.images[0].url : "https://michelledang.github.io/statify/favicon.png"
+                    } />
                 <h4 className="sidebar-name" >Made for {this.props.me.display_name}!</h4>
     
                 <p className={this.getTextClass(CHART_TYPES.artists)}
