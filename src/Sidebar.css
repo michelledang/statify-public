@@ -1,42 +1,59 @@
 .sidebar-wrapper {
-    background-color: #191414;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: x-large;
-    color: white;
-    width: 23%;
-    padding: 1em;
-    text-align: end;
-    min-height: 100vh;
+  background-color: #191414;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: x-large;
+  color: white;
+  padding: 1em;
+  text-align: end;
 }
 
 .sidebar-img {
-    width: 25vmin;
-    border-radius: 25vmin;
+  width: 4rem;
+  border-radius: 2rem;
 }
 
 .sidebar-selected {
-    width: 100%;
-    font-weight: bold;
-    text-align: center;
-    color: #1DB954;
+  font-weight: bold;
+  text-align: center;
+  color: #1db954;
 }
 
-.sidebar-name {
-    width: 100%;
-    text-align: center;
-    font-weight: lighter;
-    font-size: medium;
+.sidebar-header {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-header-title {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-left: 1em;
+}
+
+.sidebar-title {
+  margin: 0;
+}
+
+.sidebar-text {
+  width: 100%;
+  text-align: center;
+  font-weight: lighter;
+  font-size: medium;
+  margin: 0;
 }
 
 .sidebar-unselected {
-    width: 100%;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
 }
 
 .sidebar-unselected:hover {
-    color: #1DB954;
+  color: #1db954;
+}
+
+.sidebar-options {
+  display: flex;
 }

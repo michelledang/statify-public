@@ -1,33 +1,37 @@
-import React, { Component } from "react";
-import $ from "jquery";
-import { authEndpoint, clientId, redirectUri, scopes } from "./config";
-import hash from "./hash";
-import Chart from "./Chart";
-import Sidebar from "./Sidebar";
-import { CHART_TYPES } from "./constants";
-import "./App.css";
+import React, { Component } from 'react';
+import $ from 'jquery';
+import { authEndpoint, clientId, redirectUri, scopes } from './config';
+import hash from './hash';
+import Chart from './Chart';
+import Sidebar from './Sidebar';
+import { CHART_TYPES, TIME_RANGES } from './constants';
+import './App.css';
 
 class App extends Component {
-
   constructor() {
     super();
     this.state = {
       token: null,
       current: CHART_TYPES.artists,
-      artists: [{
-        images: [{ url: "" }],
-        name: "",
-        genres: [],
-      }],
-      tracks: [{
-        artists: [{ name: "" }],
-        name: "",
-        album: { images: [{url: ""}] }
-      }],
+      time: TIME_RANGES['1 month'],
+      artists: [
+        {
+          images: [{ url: '' }],
+          name: '',
+          genres: [],
+        },
+      ],
+      tracks: [
+        {
+          artists: [{ name: '' }],
+          name: '',
+          album: { images: [{ url: '' }] },
+        },
+      ],
       me: {
-        images: [{ url: "" }],
-        display_name: ""
-      }
+        images: [{ url: '' }],
+        display_name: '',
+      },
     };
     this.getMe = this.getMe.bind(this);
     this.getTopArtists = this.getTopArtists.bind(this);
@@ -38,60 +42,74 @@ class App extends Component {
 
     if (_token) {
       this.setState({
-        token: _token
+        token: _token,
       });
       this.getMe(_token);
-      this.getTopArtists(_token);
-      this.getTopTracks(_token);
+      this.getTopArtists(_token, this.state.time);
+      this.getTopTracks(_token, this.state.time);
     }
   }
 
   setCurrent = (type) => {
     this.setState({ current: type });
-  }
+  };
+
+  setTime = (range) => {
+    this.setState({ time: range });
+    let _token = hash.access_token;
+
+    if (_token) {
+      this.setState({
+        token: _token,
+      });
+      this.getMe(_token);
+      this.getTopArtists(_token, range);
+      this.getTopTracks(_token, range);
+    }
+  };
 
   getMe(token) {
     $.ajax({
-      url: "https://api.spotify.com/v1/me",
-      type: "GET",
-      beforeSend: xhr => {
-        xhr.setRequestHeader("Authorization", "Bearer " + token);
+      url: 'https://api.spotify.com/v1/me',
+      type: 'GET',
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
       },
-      success: data => {
+      success: (data) => {
         this.setState({
-          me: data
+          me: data,
         });
-      }
+      },
     });
   }
 
-  getTopArtists(token) {
+  getTopArtists(token, time) {
     $.ajax({
-      url: "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=long_term",
-      type: "GET",
-      beforeSend: xhr => {
-        xhr.setRequestHeader("Authorization", "Bearer " + token);
+      url: `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${time}`,
+      type: 'GET',
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
       },
-      success: data => {
+      success: (data) => {
         this.setState({
-          artists: data.items
+          artists: data.items,
         });
-      }
+      },
     });
   }
 
-  getTopTracks(token) {
+  getTopTracks(token, time) {
     $.ajax({
-      url: "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=long_term",
-      type: "GET",
-      beforeSend: xhr => {
-        xhr.setRequestHeader("Authorization", "Bearer " + token);
+      url: `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${time}`,
+      type: 'GET',
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
       },
-      success: data => {
+      success: (data) => {
         this.setState({
-          tracks: data.items
+          tracks: data.items,
         });
-      }
+      },
     });
   }
 
@@ -100,13 +118,14 @@ class App extends Component {
       return (
         <div className="Login">
           <div className="Welcome">
-            <p className="welcome-message" >
-              Log in to view your Spotify stats like top artists, songs, genres and moods!
-              </p>
+            <p className="welcome-message">
+              Log in to view your Spotify stats like top artists, songs, genres
+              and moods!
+            </p>
             <a
               className="btn btn--loginApp-link"
               href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                "%20"
+                '%20'
               )}&response_type=token&show_dialog=true`}
             >
               Login to Spotify
@@ -122,6 +141,7 @@ class App extends Component {
           me={this.state.me}
           current={this.state.current}
           handleCurrentSelection={this.setCurrent}
+          handleTimeSelection={this.setTime}
         />
         <Chart
           artists={this.state.artists}

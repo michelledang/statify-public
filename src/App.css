@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -13,7 +14,6 @@ body {
 }
 
 .App {
-  display: flex;
   background-color: #191414;
   height: 100%;
   width: 100%;
@@ -39,20 +39,20 @@ body {
 }
 
 .btn {
-  background-color: #1DB954;
+  background-color: #1db954;
   border-radius: 500px;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
   font-size: 2.5vmin;
   padding: 16px 48px 18px;
   text-transform: uppercase;
   text-decoration: none;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   letter-spacing: 2px;
   font-weight: bold;
 }
 
 .btn:hover {
-  color: #1DB954;
+  color: #1db954;
   background: #333;
 }
