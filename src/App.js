@@ -118,6 +118,7 @@ class App extends Component {
       return (
         <div className="Login">
           <div className="Welcome">
+            <h1>Statify</h1>
             <p className="welcome-message">
               Log in to view your Spotify stats like top artists, songs, genres
               and moods!
