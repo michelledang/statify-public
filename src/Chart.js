@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import ArtistItem from './ArtistItem';
 import TrackItem from './TrackItem';
 import GenreItem from './GenreItem';
-import { CHART_TYPES } from './constants';
+import { CHART_TYPES, TIME_RANGES } from './constants';
 import './Chart.css';
 
 class Chart extends Component {
+  constructor() {
+    super();
+    this.state = {
+      current: CHART_TYPES['Top Artists'],
+    };
+  }
   getGenresFromArtists() {
     const genres = this.props.artists.reduce((acc, artist) => {
       artist.genres.map((genre) => {
@@ -30,29 +36,66 @@ class Chart extends Component {
 
   render() {
     return (
-      <div className="main-wrapper">
-        {this.props.current === CHART_TYPES.artists &&
-          this.props.artists.map((artist, index) => (
-            <ArtistItem
-              name={artist.name}
-              imageUrl={artist.images[0].url}
-              key={index}
-            />
-          ))}
-        {this.props.current === CHART_TYPES.tracks &&
-          this.props.tracks.map((track, index) => (
-            <TrackItem
-              name={track.name}
-              imageUrl={track.album.images[0].url}
-              artist={track.artists[0].name}
-              key={index}
-            />
-          ))}
-        {this.props.current === CHART_TYPES.genres &&
-          this.getGenresFromArtists().map(([genre, score], index) => (
-            <GenreItem name={genre} score={score} key={index} />
-          ))}
-        {this.props.current === CHART_TYPES.moods && <p>Coming soon!</p>}
+      <div className="chart-wrapper">
+        <div className="sidebar-options">
+          <select
+            id="data-type"
+            name="data-type"
+            onChange={(e) => {
+              this.props.handleCurrentSelection(e.target.value);
+              this.setState({ current: e.target.value });
+            }}
+          >
+            {Object.keys(CHART_TYPES).map((key) => {
+              return (
+                <option key={key} value={CHART_TYPES[key]}>
+                  {key}
+                </option>
+              );
+            })}
+          </select>
+          <select
+            id="time-range"
+            name="time-range"
+            onChange={(e) => {
+              this.props.handleTimeSelection(e.target.value);
+            }}
+          >
+            {Object.keys(TIME_RANGES).map((key) => {
+              return (
+                <option key={key} value={TIME_RANGES[key]}>
+                  {key}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className="main-wrapper">
+          {this.state.current === CHART_TYPES['Top Artists'] &&
+            this.props.artists.map((artist, index) => (
+              <ArtistItem
+                name={artist.name}
+                imageUrl={artist.images[0].url}
+                key={index}
+              />
+            ))}
+          {this.state.current === CHART_TYPES['Top Tracks'] &&
+            this.props.tracks.map((track, index) => (
+              <TrackItem
+                name={track.name}
+                imageUrl={track.album.images[0].url}
+                artist={track.artists[0].name}
+                key={index}
+              />
+            ))}
+          {this.state.current === CHART_TYPES['Top Genres'] &&
+            this.getGenresFromArtists().map(([genre, score], index) => (
+              <GenreItem name={genre} score={score} key={index} />
+            ))}
+          {this.state.current === CHART_TYPES['Top Moods'] && (
+            <p>Coming soon!</p>
+          )}
+        </div>
       </div>
     );
   }

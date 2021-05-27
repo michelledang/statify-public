@@ -12,8 +12,8 @@ class App extends Component {
     super();
     this.state = {
       token: null,
-      current: CHART_TYPES.artists,
-      time: TIME_RANGES['1 month'],
+      current: CHART_TYPES['Top Artists'],
+      time: TIME_RANGES['Last Month'],
       artists: [
         {
           images: [{ url: '' }],
@@ -138,16 +138,13 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Sidebar
-          me={this.state.me}
-          current={this.state.current}
-          handleCurrentSelection={this.setCurrent}
-          handleTimeSelection={this.setTime}
-        />
+        <Sidebar me={this.state.me} current={this.state.current} />
         <Chart
           artists={this.state.artists}
           tracks={this.state.tracks}
           current={this.state.current}
+          handleCurrentSelection={this.setCurrent}
+          handleTimeSelection={this.setTime}
         />
       </div>
     );
