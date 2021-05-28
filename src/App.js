@@ -146,6 +146,12 @@ class App extends Component {
           handleCurrentSelection={this.setCurrent}
           handleTimeSelection={this.setTime}
         />
+        <p id="footer">
+          Built by{' '}
+          <a href={'https://github.com/michelledang'} target="_blank">
+            Michelle Dang
+          </a>
+        </p>
       </div>
     );
   }

@@ -1,79 +1,98 @@
 .chart-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #2c2c2c;
-  padding-top: 1em;
+  background-color: #191414;
 }
 
 .sidebar-options {
   display: flex;
   width: 100%;
-  align-content: center;
-  place-content: space-between;
+  align-items: center;
+  place-content: center;
   padding: 0 2em;
 }
 
-#data-type {
-  border: none;
-  background-color: #2c2c2c;
-  color: white;
-  font-size: 24px;
-  text-align-last: center;
-}
-
-#time-range {
-  background-color: #2c2c2c;
+.chart-selector {
+  background-color: #191414;
   border-radius: 8px;
   padding: 4px 0;
-  color: white;
+  color: #1db954;
   font-size: 16px;
-  text-align-last: center;
+  font-weight: 800;
+  border: none;
+  font-family: Helvetica Neue, sans-serif, Arial;
+}
+
+.chart-selector:hover {
+  color: #1db954;
 }
 
 .main-wrapper {
   color: white;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 1em;
 }
 
 .chart-item {
-  width: 150px;
+  display: flex;
+  align-items: center;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .chart-img {
-  width: 100px;
-  height: 100px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50px;
 }
 
 .chart-img-album {
-  width: 100px;
-  height: 100px;
-}
-
-.chart-item-title {
-  margin: 1em 0 0.2em 0;
-}
-
-.chart-item-subtitle {
-  margin: 0 0 1.5em 0;
-  font-weight: lighter;
-  font-size: small;
-  color: #eaeaea;
-}
-
-.chart-item-genre {
-  margin: 1em 0 0.2em 0;
-  text-transform: capitalize;
+  width: 4rem;
+  height: 4rem;
 }
 
 .chart-item-number {
-  font-weight: bold;
-  font-size: xx-large;
-  color: #1db954;
+  margin: 1rem;
+}
+
+.chart-item-title {
+  font-size: 20px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.chart-item-subtitle {
+  font-weight: lighter;
+  font-size: 16px;
+  color: #eaeaea;
+  text-align: left;
+}
+
+.chart-item-title-subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.chart-item-text {
+  margin: 1rem;
+}
+
+.chart-p {
+  font-weight: lighter;
+  font-size: 16px;
+  color: #eaeaea;
+  margin: 0 1rem;
+}
+
+#footer {
+  font-weight: lighter;
+  font-size: 16px;
+  color: #eaeaea;
+  margin: 0 1rem;
+  text-align-last: center;
+  margin: 2em 0;
 }

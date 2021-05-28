@@ -28,7 +28,7 @@ class Chart extends Component {
       (a, b) => genres[b] - genres[a]
     );
     let topGenres = [];
-    for (var i = 0; i < Math.min(20, sortedGenres.length); i++) {
+    for (var i = 0; i < Math.min(50, sortedGenres.length); i++) {
       topGenres.push([sortedGenres[i], genres[sortedGenres[i]]]);
     }
     return topGenres;
@@ -41,6 +41,8 @@ class Chart extends Component {
           <select
             id="data-type"
             name="data-type"
+            className="chart-selector"
+            style={{ fontFamily: 'Helvetica Neue, sans-serif, Arial' }}
             onChange={(e) => {
               this.props.handleCurrentSelection(e.target.value);
               this.setState({ current: e.target.value });
@@ -54,9 +56,12 @@ class Chart extends Component {
               );
             })}
           </select>
+          <p className="chart-p">of</p>
           <select
             id="time-range"
             name="time-range"
+            className="chart-selector"
+            style={{ fontFamily: 'Helvetica Neue, sans-serif, Arial' }}
             onChange={(e) => {
               this.props.handleTimeSelection(e.target.value);
             }}
@@ -76,6 +81,7 @@ class Chart extends Component {
               <ArtistItem
                 name={artist.name}
                 imageUrl={artist.images[0].url}
+                index={index + 1}
                 key={index}
               />
             ))}
@@ -85,12 +91,19 @@ class Chart extends Component {
                 name={track.name}
                 imageUrl={track.album.images[0].url}
                 artist={track.artists[0].name}
+                index={index + 1}
                 key={index}
               />
             ))}
           {this.state.current === CHART_TYPES['Top Genres'] &&
             this.getGenresFromArtists().map(([genre, score], index) => (
-              <GenreItem name={genre} score={score} key={index} />
+              <GenreItem
+                name={genre}
+                score={score}
+                percent={score / 50}
+                index={index + 1}
+                key={index}
+              />
             ))}
           {this.state.current === CHART_TYPES['Top Moods'] && (
             <p>Coming soon!</p>

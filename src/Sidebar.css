@@ -1,12 +1,13 @@
 .sidebar-wrapper {
   background-color: #191414;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-end;
   font-size: x-large;
   color: white;
   padding: 1em;
   text-align: end;
+  place-content: space-between;
 }
 
 .sidebar-img {
@@ -20,20 +21,15 @@
   color: #1db954;
 }
 
-.sidebar-header {
-  display: flex;
-  align-items: center;
-}
-
 .sidebar-header-title {
   display: flex;
   flex-direction: column;
-  align-items: end;
-  margin-left: 1em;
+  text-align: left;
 }
 
 .sidebar-title {
   margin: 0;
+  font-weight: 800;
 }
 
 .sidebar-text {
