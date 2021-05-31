@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ArtistItem from './ArtistItem';
 import TrackItem from './TrackItem';
 import GenreItem from './GenreItem';
+import MoodItem from './MoodItem';
 import { CHART_TYPES, TIME_RANGES } from './constants';
 import './Chart.css';
 
@@ -99,15 +100,20 @@ class Chart extends Component {
             this.getGenresFromArtists().map(([genre, score], index) => (
               <GenreItem
                 name={genre}
-                score={score}
                 percent={score / 50}
                 index={index + 1}
                 key={index}
               />
             ))}
-          {this.state.current === CHART_TYPES['Top Moods'] && (
-            <p>Coming soon!</p>
-          )}
+          {this.state.current === CHART_TYPES['Average Moods'] &&
+            Object.keys(this.props.moods).map((key, index) => (
+              <MoodItem
+                name={key}
+                value={this.props.moods[key]}
+                index={index + 1}
+                key={index}
+              />
+            ))}
         </div>
       </div>
     );

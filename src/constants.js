@@ -2,7 +2,7 @@ export const CHART_TYPES = {
   'Top Artists': 'artists',
   'Top Tracks': 'tracks',
   'Top Genres': 'genres',
-  'Top Moods': 'moods',
+  'Average Moods': 'moods',
 };
 
 export const TIME_RANGES = {
@@ -10,3 +10,18 @@ export const TIME_RANGES = {
   'Last 6 Months': 'medium_term',
   'All Time': 'long_term',
 };
+
+export const AUDIO_FEATURES = [
+  'acousticness',
+  'danceability',
+  'duration_ms',
+  'energy',
+  'instrumentalness',
+  'liveness',
+  'loudness',
+  'mode',
+  'speechiness',
+  'tempo',
+  // 'time_signature',
+  'valence',
+];

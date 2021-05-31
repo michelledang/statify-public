@@ -44,7 +44,7 @@ body {
 
 .welcome-message {
   margin: 3em;
-  font-size: 2.5vmin;
+  font-size: 16px;
 }
 
 .btn {
@@ -52,8 +52,8 @@ body {
   border-radius: 500px;
   color: #fff;
   cursor: pointer;
-  font-size: 16px;
-  padding: 8px 24px 8px;
+  font-size: 14px;
+  padding: 12px 24px 12px;
   text-transform: uppercase;
   text-decoration: none;
   transition-duration: 0.3s;

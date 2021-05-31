@@ -4,7 +4,7 @@ import { authEndpoint, clientId, redirectUri, scopes } from './config';
 import hash from './hash';
 import Chart from './Chart';
 import Sidebar from './Sidebar';
-import { CHART_TYPES, TIME_RANGES } from './constants';
+import { AUDIO_FEATURES, CHART_TYPES, TIME_RANGES } from './constants';
 import './App.css';
 
 class App extends Component {
@@ -32,10 +32,12 @@ class App extends Component {
         images: [{ url: '' }],
         display_name: '',
       },
+      moods: [{}],
     };
     this.getMe = this.getMe.bind(this);
     this.getTopArtists = this.getTopArtists.bind(this);
     this.getTopTracks = this.getTopTracks.bind(this);
+    this.getTopMoods = this.getTopMoods.bind(this);
   }
   componentDidMount() {
     let _token = hash.access_token;
@@ -109,6 +111,38 @@ class App extends Component {
         this.setState({
           tracks: data.items,
         });
+        this.getTopMoods(token);
+      },
+    });
+  }
+
+  getTopMoods(token) {
+    const trackIds = this.state.tracks
+      .map((track) => track.id)
+      .reduce((acc, id) => {
+        acc += id;
+        acc += ',';
+        return acc;
+      }, '');
+    $.ajax({
+      url: `https://api.spotify.com/v1/audio-features?ids=${trackIds}`,
+      type: 'GET',
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+      },
+      success: (data) => {
+        let averageMoods = {};
+        AUDIO_FEATURES.map((feature) => {
+          let totalMood = data.audio_features.reduce((acc, item) => {
+            acc += item[feature];
+            return acc;
+          }, 0);
+          averageMoods[feature] = totalMood / data.audio_features.length;
+        });
+
+        this.setState({
+          moods: averageMoods,
+        });
       },
     });
   }
@@ -142,6 +176,7 @@ class App extends Component {
         <Chart
           artists={this.state.artists}
           tracks={this.state.tracks}
+          moods={this.state.moods}
           current={this.state.current}
           handleCurrentSelection={this.setCurrent}
           handleTimeSelection={this.setTime}
