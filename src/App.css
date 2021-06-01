@@ -1,0 +1,67 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #191414;
+  font-family: Helvetica Neue, sans-serif, Arial;
+}
+
+p {
+  margin: 0;
+  font-size: 16px;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: #191414;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 768px;
+}
+
+.Login {
+  background-color: #191414;
+  height: 100vh;
+  text-align: center;
+}
+
+.Welcome {
+  text-align: center;
+  color: white;
+  background-color: #191414;
+  height: 100vh;
+  padding: 2em;
+}
+
+.welcome-message {
+  margin: 3em;
+  font-size: 16px;
+}
+
+.btn {
+  background-color: #1db954;
+  border-radius: 500px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 12px 24px 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition-duration: 0.3s;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  color: #1db954;
+  background: #333;
+}

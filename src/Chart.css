@@ -1,0 +1,98 @@
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #191414;
+}
+
+.sidebar-options {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  place-content: center;
+  padding: 0 2em;
+}
+
+.chart-selector {
+  background-color: #191414;
+  border-radius: 8px;
+  padding: 4px 0;
+  color: #1db954;
+  font-size: 16px;
+  font-weight: 800;
+  border: none;
+  font-family: Helvetica Neue, sans-serif, Arial;
+}
+
+.chart-selector:hover {
+  color: #1db954;
+}
+
+.main-wrapper {
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 1em;
+}
+
+.chart-item {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.chart-img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50px;
+}
+
+.chart-img-album {
+  width: 4rem;
+  height: 4rem;
+}
+
+.chart-item-number {
+  margin: 1rem;
+}
+
+.chart-item-title {
+  font-size: 20px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.chart-item-subtitle {
+  font-weight: lighter;
+  font-size: 16px;
+  color: #eaeaea;
+  text-align: left;
+}
+
+.chart-item-title-subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.chart-item-text {
+  margin: 1rem;
+}
+
+.chart-p {
+  font-weight: lighter;
+  font-size: 16px;
+  color: #eaeaea;
+  margin: 0 1rem;
+}
+
+#footer {
+  font-weight: lighter;
+  font-size: 16px;
+  color: #eaeaea;
+  margin: 0 1rem;
+  text-align-last: center;
+  margin: 2em 0;
+}
