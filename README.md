@@ -1,4 +1,4 @@
-# Statify https://michelledang.github.io/statify/
+# Statify https://statify.michelledang.me/
 
 ### View your Spotify stats like top artists, tracks, and genres!
 
